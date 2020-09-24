@@ -18,10 +18,19 @@ file = open("cache.log", "r", encoding="windows-1252")
 print('Beginning log inspection...')
 
 # Analysis
+days = {"Sunday": 0, "Monday": 0, "Tuesday": 0, "Wednesday": 0, "Thursday": 0, "Friday": 0, "Saturday": 0}
+weeks = {}
+months = {}
+files = {}
+errors = 0
+redirects = 0
 for line in file:
     lines = line.split(" ")
     if len(lines) < 10:
         continue
+    date = date = datetime.strptime(lines[3], "[%d/%b/%Y:%H:%M:%S")
+    filename = lines[6]
+    response = lines[8]
 
 file.close()
 
