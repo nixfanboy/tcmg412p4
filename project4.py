@@ -43,7 +43,6 @@ for line in file:
         weeks[week_str] = 1
 
     month_str = str(date.month) + " " + str(date.year) # e.g. Nov 1994 = "11 1994"
-    print(month_str)
     if month_str in months:
         months[month_str] += 1
     else:
