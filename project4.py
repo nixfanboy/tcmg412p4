@@ -60,6 +60,10 @@ for line in file:
 
 file.close()
 
+#Analyzed Info
+print("Total Number of Requests: ", total_requests)
+print("Percentage of Requests as Errors: ",round((errors*100)/total_requests,2),"%")
+print("Percentage of Requests as Redirects: ", round((redirects*100)/total_requests,2),"%")
 # Analyze Info
 most_accessed_file = ""
 least_accessed_file = ""
