@@ -4,6 +4,7 @@ import os
 from collections import Counter
 import operator
 
+
 # Checks for log file
 print("Checking for log file")
 
@@ -66,7 +67,6 @@ file.close()
 
 
 #Indexing Data
-file_count = Counter(files)
 file_dict = dict(file_count)
 months_count = Counter(months)
 months_dict = dict(months_count)
@@ -108,6 +108,13 @@ while choice != 'q':
           choice2 = input("\nWhat would you like to see?")
 
           if choice2 == '1':
+            print("\nRequests per day: ", list(days_count.items()),"\n")
+        
+          elif choice2 == '2':
+            print("Requests per Week: ", list(weeks_count.items()),"\n")
+        
+          elif choice2 == '3':
+            print("Requests per Month: ", list(months_count.items()),"\n")
             for x,y in sorted (days_dict.items()):
               print("\n On ",x," we had ",y," requests\n")
         
@@ -118,7 +125,6 @@ while choice != 'q':
           elif choice2 == '3':
             for x,y in sorted (months_dict.items()):
               print("\n On ",x," we had ",y," requests\n")
-        
           elif choice2 == 'q':
             print("\n")
 
