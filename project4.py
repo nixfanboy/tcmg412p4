@@ -60,6 +60,10 @@ for line in file:
 
 file.close()
 
+#Analyzed Info
+print("Total Number of Requests: ", total_requests)
+print("Percentage of Requests as Errors: ",round((errors*100)/total_requests,2),"%")
+print("Percentage of Requests as Redirects: ", round((redirects*100)/total_requests,2),"%")
 # Analyze Info
 file_count = Counter(files)
 top_file = file_count.most_common(1) #most common file
