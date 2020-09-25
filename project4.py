@@ -109,40 +109,43 @@ while choice != 'q':
           choice2 = input("\nWhat would you like to see?")
 
           if choice2 == '1':
+            print("")
             for x,y in sorted(days_dict.items()):
               if x == 0:
-                print("\n On Mondays we had ",y," requests\n")
+                print("On Mondays we had ",y," requests")
               if x == 1:
-                print("\n On Tuesdays we had ",y," requests\n")
+                print("On Tuesdays we had ",y," requests")
               if x == 2:
-                print("\n On Wednesdays we had ",y," requests\n")
+                print("On Wednesdays we had ",y," requests")
               if x == 3:
-                print("\n On Thursdays we had ",y," requests\n")
+                print("On Thursdays we had ",y," requests")
               if x == 4:
-                print("\n On Fridays we had ",y," requests\n")
+                print("On Fridays we had ",y," requests")
               if x == 5:
-                print("\n On Saturdays we had ",y," requests\n")
+                print("On Saturdays we had ",y," requests")
               if x == 6:
-                print("\n On Sundays we had ",y," requests\n")
+                print("On Sundays we had ",y," requests")
         
           elif choice2 == '2':
+            print("")
             for x,y in sorted (weeks_dict.items()):
-              print("\n On Week #",x," we had ",y," requests\n")
+              print("\n On Week #",x," we had ",y," requests")
         
           elif choice2 == '3':
+            print("")
             for x,y in sorted (months_dict.items()):
-              print("\n On ",x," we had ",y," requests\n")
+              print("On ",x," we had ",y," requests")
           elif choice2 == 'q':
             print("\n")
 
   elif choice == '2':
-    print("\nMost accessed file: ",top_file,"\n" )
-    print("\nLeast accessed file: ",bottom_file,"\n" )
+    print("\nMost accessed file: ",top_file)
+    print("Least accessed file: ",bottom_file)
 
   elif choice == '3':
-    print("\nPercentage of Requests as Errors: ",round((errors*100)/total_requests,2),"%\n")
+    print("\nPercentage of Requests as Errors: ",round((errors*100)/total_requests,2),"%")
 
-    print("\nPercentage of Requests as Redirects: ", round((redirects*100)/total_requests,2),"%\n")
+    print("Percentage of Requests as Redirects: ", round((redirects*100)/total_requests,2),"%")
 
   elif choice == 'q':
       print("\nUntil next time.\n")
