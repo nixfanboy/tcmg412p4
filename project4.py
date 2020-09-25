@@ -61,7 +61,19 @@ for line in file:
 file.close()
 
 # Analyze Info
-most_accessed_file = ""
-least_accessed_file = ""
+file_count = Counter(files)
+top_file = file_count.most_common(1) #most common file
+bottom_file = file_count.most_common()[-1] #least common file
+
+print("log inspection completed")
+print("Most accessed file: ",top_file )
+print("least accessed file: ",bottom_file )
+
+
+print("Total Number of Requests: ", total_requests)
+print("Percentage of Requests as Errors: ",round((errors*100)/total_requests,2),"%")
+print("Percentage of Requests as Redirects: ", round((redirects*100)/total_requests,2),"%")
+
+
 
 # Output Info
