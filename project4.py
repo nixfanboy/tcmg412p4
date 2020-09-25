@@ -110,7 +110,20 @@ while choice != 'q':
 
           if choice2 == '1':
             for x,y in sorted(days_dict.items()):
-              print("\n On Weekday #",x," we had ",y," requests\n")
+              if x == 0:
+                print("\n On Mondays we had ",y," requests\n")
+              if x == 1:
+                print("\n On Tuesdays we had ",y," requests\n")
+              if x == 2:
+                print("\n On Wednesdays we had ",y," requests\n")
+              if x == 3:
+                print("\n On Thursdays we had ",y," requests\n")
+              if x == 4:
+                print("\n On Fridays we had ",y," requests\n")
+              if x == 5:
+                print("\n On Saturdays we had ",y," requests\n")
+              if x == 6:
+                print("\n On Sundays we had ",y," requests\n")
         
           elif choice2 == '2':
             for x,y in sorted (weeks_dict.items()):
