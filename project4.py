@@ -129,7 +129,7 @@ while choice != 'q':
           elif choice2 == '2':
             print("")
             for x,y in sorted (weeks_dict.items()):
-              print("\n On Week #",x," we had ",y," requests")
+              print("On Week #",x," we had ",y," requests")
         
           elif choice2 == '3':
             print("")
