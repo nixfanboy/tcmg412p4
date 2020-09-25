@@ -68,6 +68,7 @@ file.close()
 
 #Indexing Data
 file_dict = dict(file_count)
+file_count = Counter(files)
 months_count = Counter(months)
 months_dict = dict(months_count)
 weeks_count = Counter(weeks)
