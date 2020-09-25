@@ -2,6 +2,8 @@ from datetime import datetime
 import urllib.request
 import os
 from collections import Counter
+import operator
+
 
 # Checks for log file
 print("Checking for log file")
@@ -65,13 +67,16 @@ file.close()
 
 
 #Indexing Data
-file_count = Counter(files)
+file_dict = dict(file_count)
 months_count = Counter(months)
+months_dict = dict(months_count)
 weeks_count = Counter(weeks)
+weeks_dict = dict(weeks_count)
 days_count = Counter(days)
+days_dict = dict(days_count)
 
-top_file = file_count.most_common(1) #most common file
-bottom_file = file_count.most_common()[-1] #least common file
+top_file = max(file_dict.items(), key=lambda x: x[1]) #most common file
+bottom_file =  min(file_dict.items(), key=lambda x: x[1]) #least common file
 
 # Selecting Data to Show.
 print("\nLog Analysis Complete! What would you like to see?")
@@ -110,7 +115,16 @@ while choice != 'q':
         
           elif choice2 == '3':
             print("Requests per Month: ", list(months_count.items()),"\n")
+            for x,y in sorted (days_dict.items()):
+              print("\n On ",x," we had ",y," requests\n")
         
+          elif choice2 == '2':
+            for x,y in sorted (weeks_dict.items()):
+              print("\n On Week #",x," we had ",y," requests\n")
+        
+          elif choice2 == '3':
+            for x,y in sorted (months_dict.items()):
+              print("\n On ",x," we had ",y," requests\n")
           elif choice2 == 'q':
             print("\n")
 
