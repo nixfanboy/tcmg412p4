@@ -1,6 +1,8 @@
 from datetime import datetime
 import urllib.request
 import os
+from collections import Counter
+import operator
 
 # Checks for log file
 print("Checking for log file")
@@ -14,7 +16,6 @@ else:
     print('Cache log is already downloaded')
 
 # Open File
-file = open("cache.log", "r", encoding="windows-1252")
 print('Beginning log inspection...')
 
 # Collect Info
@@ -25,6 +26,10 @@ files = {}
 errors = 0
 redirects = 0
 total_requests = 0
+
+#Opening File
+file = open("cache.log", "r", encoding="windows-1252")
+
 for line in file:
     lines = line.split(" ")
     if len(lines) < 10:
@@ -57,27 +62,76 @@ for line in file:
         errors += 1
     elif response[0] == "3":
         redirects += 1
-
 file.close()
 
-#Analyzed Info
-print("Total Number of Requests: ", total_requests)
-print("Percentage of Requests as Errors: ",round((errors*100)/total_requests,2),"%")
-print("Percentage of Requests as Redirects: ", round((redirects*100)/total_requests,2),"%")
-# Analyze Info
+
+#Indexing Data
 file_count = Counter(files)
-top_file = file_count.most_common(1) #most common file
-bottom_file = file_count.most_common()[-1] #least common file
+file_dict = dict(file_count)
+months_count = Counter(months)
+months_dict = dict(months_count)
+weeks_count = Counter(weeks)
+weeks_dict = dict(weeks_count)
+days_count = Counter(days)
+days_dict = dict(days_count)
 
-print("log inspection completed")
-print("Most accessed file: ",top_file )
-print("least accessed file: ",bottom_file )
+top_file = max(file_dict.items(), key=lambda x: x[1]) #most common file
+bottom_file =  min(file_dict.items(), key=lambda x: x[1]) #least common file
 
+# Selecting Data to Show.
+print("\nLog Analysis Complete! What would you like to see?")
 
-print("Total Number of Requests: ", total_requests)
-print("Percentage of Requests as Errors: ",round((errors*100)/total_requests,2),"%")
-print("Percentage of Requests as Redirects: ", round((redirects*100)/total_requests,2),"%")
+# Set an initial value for choice other than the value for 'quit'.
+choice = ''
+choice2 = ''
+# Start a loop that runs until the user enters the value for 'quit'.
+while choice != 'q':
+    # Give all the choices in a series of print statements.
+  print("\n[1] Enter 1 to Enter Request Analysis by Date.")
+  print("[2] Enter 2 to See Most/Least Requested File.")
+  print("[3] Enter 3 to Unsuccesful/Redirect Request Percentage")
+  print("[q] Enter q to quit.")
+    
+    # Ask for the user's choice.
+  choice = input("\nWhat would you like to see? ")
+    
+    # Respond to the user's choice.
+  if choice == '1': 
 
+        while choice2 != 'q':
+        # Requests by Date menu
+          print("\n[1] Enter 1 for Requests by Date")
+          print("[2] Enter 2 for Requests per week.")
+          print("[3] Enter 3 for Requests per month")
+          print("[q] Enter q to go back.")
 
+          choice2 = input("\nWhat would you like to see?")
 
-# Output Info
+          if choice2 == '1':
+            for x,y in sorted (days_dict.items()):
+              print("\n On ",x," we had ",y," requests\n")
+        
+          elif choice2 == '2':
+            for x,y in sorted (weeks_dict.items()):
+              print("\n On Week #",x," we had ",y," requests\n")
+        
+          elif choice2 == '3':
+            for x,y in sorted (months_dict.items()):
+              print("\n On ",x," we had ",y," requests\n")
+        
+          elif choice2 == 'q':
+            print("\n")
+
+  elif choice == '2':
+    print("\nMost accessed file: ",top_file,"\n" )
+    print("\nLeast accessed file: ",bottom_file,"\n" )
+
+  elif choice == '3':
+    print("\nPercentage of Requests as Errors: ",round((errors*100)/total_requests,2),"%\n")
+
+    print("\nPercentage of Requests as Redirects: ", round((redirects*100)/total_requests,2),"%\n")
+
+  elif choice == 'q':
+      print("\nUntil next time.\n")
+  else:
+      print("\nI don't understand that choice, please try again.\n")
